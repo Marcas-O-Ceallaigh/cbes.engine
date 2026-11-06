@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        updatePreview();
-    );
+                updatePreview();
+    });
 
     function updatePreview() {
         preview.textContent = editor.value;
