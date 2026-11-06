@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-                updatePreview();
+        updatePreview();
     });
 
     function updatePreview() {
@@ -64,4 +64,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     preview.textContent = "CBÉS loaded";
+
 });
