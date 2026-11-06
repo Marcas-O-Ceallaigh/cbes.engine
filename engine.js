@@ -46,13 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 return false;
             }
-
-            // 1. Try triple-tap resets first (bbb -> bb)
-            let replaced = checkAndReplace(rules.triple_tap_resets);
-            
-            // 2. If no triple-tap, try double-tap conversions (bb -> ḃ)
-            if (!replaced) {
-                checkAndReplace(rules.double_tap_replacements);
+checkAndReplace(rules.double_tap_replacements);
             }
 
             updatePreview();
