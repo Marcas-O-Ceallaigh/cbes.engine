@@ -4,52 +4,55 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let rules = {};
 
-    // Load rules.json asynchronously
+    // Load rules.json
     fetch("rules.json")
         .then(response => response.json())
         .then(data => {
             rules = data;
-            console.log("CBÉS Engine double-tap rules loaded successfully.");
+            console.log("CBÉS Engine loaded successfully.");
         })
         .catch(error => console.error("Error loading rules.json:", error));
 
     if (editor) {
         editor.addEventListener("input", (e) => {
-            if (!e.inputType || e.inputType.startsWith("delete")) return;
+            // Skip deletion events
+            if (e.inputType && e.inputType.startsWith("delete")) {
+                updatePreview();
+                return;
+            }
 
             let cursorPos = editor.selectionStart;
             let text = editor.value;
 
-            // 1. Check for triple-tap resets first (e.g., 'bbb' -> 'bb')
-            if (rules.triple_tap_resets) {
-                for (const [trigger, replacement] of Object.entries(rules.triple_tap_resets)) {
-                    if (cursorPos >= trigger.length) {
-                        let sliceToCheck = text.substring(cursorPos - trigger.length, cursorPos);
+            // Helper function to check and perform string swap
+            function checkAndReplace(replacementMap) {
+                if (!replacementMap) return false;
+                
+                for (const [trigger, replacement] of Object.entries(replacementMap)) {
+                    let len = trigger.length;
+                    if (cursorPos >= len) {
+                        let sliceToCheck = text.slice(cursorPos - len, cursorPos);
                         if (sliceToCheck === trigger) {
-                            editor.value = text.substring(0, cursorPos - trigger.length) + replacement + text.substring(cursorPos);
-                            let newCursorPos = cursorPos - (trigger.length - replacement.length);
-                            editor.setSelectionRange(newCursorPos, newCursorPos);
-                            updatePreview();
-                            return;
+                            let before = text.slice(0, cursorPos - len);
+                            let after = text.slice(cursorPos);
+                            
+                            editor.value = before + replacement + after;
+                            
+                            let newPos = before.length + replacement.length;
+                            editor.setSelectionRange(newPos, newPos);
+                            return true;
                         }
                     }
                 }
+                return false;
             }
 
-            // 2. Check for double-tap dot conversions (e.g., 'bb' -> 'ḃ')
-            if (rules.double_tap_replacements) {
-                for (const [trigger, replacement] of Object.entries(rules.double_tap_replacements)) {
-                    if (cursorPos >= trigger.length) {
-                        let sliceToCheck = text.substring(cursorPos - trigger.length, cursorPos);
-                        if (sliceToCheck === trigger) {
-                            editor.value = text.substring(0, cursorPos - trigger.length) + replacement + text.substring(cursorPos);
-                            let newCursorPos = cursorPos - (trigger.length - replacement.length);
-                            editor.setSelectionRange(newCursorPos, newCursorPos);
-                            updatePreview();
-                            return;
-                        }
-                    }
-                }
+            // 1. Try triple-tap resets first (bbb -> bb)
+            let replaced = checkAndReplace(rules.triple_tap_resets);
+            
+            // 2. If no triple-tap, try double-tap conversions (bb -> ḃ)
+            if (!replaced) {
+                checkAndReplace(rules.double_tap_replacements);
             }
 
             updatePreview();
