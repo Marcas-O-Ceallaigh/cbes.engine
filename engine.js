@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const textarea = document.getElementById("editor"); 
+    // Connect to your text inputs/preview boxes
+    const editor = document.getElementById("editor"); 
+    const preview = document.getElementById("preview") || document.getElementById("glanchlo-preview");
+    
     let rules = {};
 
     // Load rules.json asynchronously
@@ -11,32 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error loading rules.json:", error));
 
-    // 1. Real-time typing replacement (e.g. typing 'bh' -> 'ḃ')
-    if (textarea) {
-        textarea.addEventListener("input", (e) => {
-            if (!e.inputType || e.inputType.startsWith("delete")) return;
-            if (!rules.digraph_replacements) return;
-
-            let cursorPos = textarea.selectionStart;
-            let text = textarea.value;
-
-            // Check against digraph lenition rules from rules.json
-            for (const [trigger, replacement] of Object.entries(rules.digraph_replacements)) {
-                if (cursorPos >= trigger.length) {
-                    let sliceToCheck = text.substring(cursorPos - trigger.length, cursorPos);
-                    if (sliceToCheck === trigger) {
-                        textarea.value = text.substring(0, cursorPos - trigger.length) + replacement + text.substring(cursorPos);
-                        let newCursorPos = cursorPos - (trigger.length - replacement.length);
-                        textarea.setSelectionRange(newCursorPos, newCursorPos);
-                        break;
-                    }
-                }
-            }
+    // Live typing mirror (updates your Glanchló preview box in real time)
+    if (editor && preview) {
+        editor.addEventListener("input", () => {
+            preview.textContent = editor.value;
         });
     }
 });
 
-// 2. Mobile long-press helpers (ready for your virtual keyboard buttons)
+// Mobile long-press helpers for your on-screen keyboard buttons
 let touchTimer = null;
 
 function handleTouchStart(char, keyElement, rulesData) {
@@ -61,4 +47,4 @@ function handleTouchStart(char, keyElement, rulesData) {
 
 function handleTouchEnd() {
     clearTimeout(touchTimer);
-}
+    }
