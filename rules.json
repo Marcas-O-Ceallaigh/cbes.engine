@@ -1,25 +1,29 @@
 {
   "consonants": {
-    "b": { "longPress": "ḃ", "secondary": "b" },
-    "c": { "longPress": "ċ", "secondary": "c" },
-    "d": { "longPress": "ḋ", "secondary": "d" },
-    "f": { "longPress": "ḟ", "secondary": "f" },
-    "g": { "longPress": "ġ", "secondary": "ᵹ" },
-    "m": { "longPress": "ṁ", "secondary": "m" },
-    "p": { "longPress": "ṗ", "secondary": "p" },
-    "s": { "longPress": "ṡ", "secondary": "ſ" },
-    "t": { "longPress": "ṫ", "secondary": "t" }
+    "b": { "longPress": ["ḃ"] },
+    "c": { "longPress": ["ċ"] },
+    "d": { "longPress": ["ḋ"] },
+    "f": { "longPress": ["ḟ"] },
+    "g": { "longPress": ["ġ", "ᵹ"] },
+    "h": { "longPress": ["ḣ"] },
+    "l": { "longPress": ["ḻ", "l̇"] },
+    "m": { "longPress": ["ṁ"] },
+    "n": { "longPress": ["ṅ", "ṉ"] },
+    "p": { "longPress": ["ṗ"] },
+    "r": { "longPress": ["ṙ", "ṟ"] },
+    "s": { "longPress": ["ṡ", "ſ"] },
+    "t": { "longPress": ["ṫ"] }
   },
   "vowels": {
-    "a": { "longPress": "á", "secondary": "ȧ" },
-    "e": { "longPress": "é", "secondary": "ė" },
-    "i": { "longPress": "í", "secondary": "̉i" },
-    "o": { "longPress": "ó", "secondary": "ȯ" },
-    "u": { "longPress": "ú", "secondary": "ü" }
+    "a": { "primary": "á", "options": ["á", "ȧ"] },
+    "e": { "primary": "é", "options": ["é", "ė"] },
+    "i": { "primary": "í", "options": ["í", "i̇"] },
+    "o": { "primary": "ó", "options": ["ó", "ȯ"] },
+    "u": { "primary": "ú", "options": ["ú", "u̇"] }
   },
   "symbols": {
-    "7": { "longPress": "⁊", "secondary": "&" },
-    "&": { "longPress": "⁊", "secondary": "&" }
+    "7": { "longPress": ["⁊"] },
+    "&": { "longPress": ["⁊"] }
   },
   "digraph_replacements": {
     "bh": "ḃ", "ch": "ċ", "dh": "ḋ", "fh": "ḟ",
