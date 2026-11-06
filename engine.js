@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         updatePreview();
-    });
+    );
 
     function updatePreview() {
         preview.textContent = editor.value;
     }
 
-    updatePreview();
+    preview.textContent = "CBÉS loaded";
 });
