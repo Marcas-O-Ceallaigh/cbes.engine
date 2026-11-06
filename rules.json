@@ -6,10 +6,4 @@
     "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
     "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
     "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
-  },
-  "triple_tap_resets": {
-    "bbb": "bb", "ccc": "cc", "ddd": "dd", "fff": "ff", "ggg": "gg",
-    "mmm": "mm", "ppp": "pp", "sss": "ss", "ttt": "tt",
-    "aaa": "aa", "eee": "ee", "iii": "ii", "ooo": "oo", "uuu": "uu"
-  }
 }
