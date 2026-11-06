@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const textarea = document.getElementById("editor"); // Make sure your textarea ID matches this
+    const textarea = document.getElementById("editor"); 
     let rules = {};
 
     // Load rules.json asynchronously
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let cursorPos = textarea.selectionStart;
             let text = textarea.value;
 
-            // Check against digraph lenition rules
+            // Check against digraph lenition rules from rules.json
             for (const [trigger, replacement] of Object.entries(rules.digraph_replacements)) {
                 if (cursorPos >= trigger.length) {
                     let sliceToCheck = text.substring(cursorPos - trigger.length, cursorPos);
