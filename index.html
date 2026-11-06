@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CBÉS Engine Live Test</title>
+
   <style>
-    /* Load your uploaded Glanchló font */
     @font-face {
       font-family: 'GlanchloTraditional';
       src: url('./glantgc.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
     }
 
     body {
@@ -47,22 +45,20 @@
 <body>
 
   <h2>CBÉS Engine Live Tester</h2>
-  <p>Type standard text below to test real-time conversion and font rendering:</p>
+
+  <p>
+    Type below using the CBÉS engine.
+    Double letters such as <strong>gg</strong> and <strong>cc</strong>
+    should convert automatically.
+  </p>
 
   <textarea id="editor" placeholder="Scríobh anseo..."></textarea>
 
-  <h3>Glanchló Output Preview:</h3>
+  <h3>Glanchló Output Preview</h3>
+
   <div id="preview" class="glanchlo-preview"></div>
 
   <script src="engine.js"></script>
-  <script>
-    const editor = document.getElementById('editor');
-    const preview = document.getElementById('preview');
 
-    editor.addEventListener('input', (e) => {
-      const transformedText = cbesEngine.transform(e.target.value);
-      preview.textContent = transformedText;
-    });
-  </script>
 </body>
 </html>
