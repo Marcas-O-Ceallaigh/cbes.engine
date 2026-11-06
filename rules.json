@@ -1,0 +1,30 @@
+{
+  "consonants": {
+    "b": { "longPress": "ḃ", "secondary": "b" },
+    "c": { "longPress": "ċ", "secondary": "c" },
+    "d": { "longPress": "ḋ", "secondary": "d" },
+    "f": { "longPress": "ḟ", "secondary": "f" },
+    "g": { "longPress": "ġ", "secondary": "ᵹ" },
+    "m": { "longPress": "ṁ", "secondary": "m" },
+    "p": { "longPress": "ṗ", "secondary": "p" },
+    "s": { "longPress": "ṡ", "secondary": "ſ" },
+    "t": { "longPress": "ṫ", "secondary": "t" }
+  },
+  "vowels": {
+    "a": { "longPress": "á", "secondary": "ȧ" },
+    "e": { "longPress": "é", "secondary": "ė" },
+    "i": { "longPress": "í", "secondary": "̉i" },
+    "o": { "longPress": "ó", "secondary": "ȯ" },
+    "u": { "longPress": "ú", "secondary": "ü" }
+  },
+  "symbols": {
+    "7": { "longPress": "⁊", "secondary": "&" },
+    "&": { "longPress": "⁊", "secondary": "&" }
+  },
+  "digraph_replacements": {
+    "bh": "ḃ", "ch": "ċ", "dh": "ḋ", "fh": "ḟ",
+    "gh": "ġ", "mh": "ṁ", "ph": "ṗ", "sh": "ṡ", "th": "ṫ",
+    "Bh": "Ḃ", "Ch": "Ċ", "Dh": "Ḋ", "Fh": "Ḟ",
+    "Gh": "Ġ", "Mh": "Ṁ", "Ph": "Ṗ", "Sh": "Ṡ", "Th": "Ṫ"
+  }
+}
