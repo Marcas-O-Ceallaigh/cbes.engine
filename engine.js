@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const editor = document.getElementById("editor"); 
-    const preview = document.getElementById("preview") || document.getElementById("glanchlo-preview");
-    
+
+    const editor = document.getElementById("editor");
+    const preview = document.getElementById("preview");
+
     let rules = {};
 
     // Load rules.json
@@ -11,51 +12,56 @@ document.addEventListener("DOMContentLoaded", () => {
             rules = data;
             console.log("CBÉS Engine loaded successfully.");
         })
-        .catch(error => console.error("Error loading rules.json:", error));
-
-    if (editor) {
-        editor.addEventListener("input", (e) => {
-            // Skip deletion events
-            if (e.inputType && e.inputType.startsWith("delete")) {
-                updatePreview();
-                return;
-            }
-
-            let cursorPos = editor.selectionStart;
-            let text = editor.value;
-
-            // Helper function to check and perform string swap
-            function checkAndReplace(replacementMap) {
-                if (!replacementMap) return false;
-                
-                for (const [trigger, replacement] of Object.entries(replacementMap)) {
-                    let len = trigger.length;
-                    if (cursorPos >= len) {
-                        let sliceToCheck = text.slice(cursorPos - len, cursorPos);
-                        if (sliceToCheck === trigger) {
-                            let before = text.slice(0, cursorPos - len);
-                            let after = text.slice(cursorPos);
-                            
-                            editor.value = before + replacement + after;
-                            
-                            let newPos = before.length + replacement.length;
-                            editor.setSelectionRange(newPos, newPos);
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-checkAndReplace(rules.double_tap_replacements);
-            }
-
-            updatePreview();
+        .catch(error => {
+            console.error("Error loading rules.json:", error);
         });
-    }
+
+    editor.addEventListener("input", (e) => {
+
+        // Ignore deletes for now
+        if (e.inputType && e.inputType.startsWith("delete")) {
+            updatePreview();
+            return;
+        }
+
+        if (!rules.double_tap_replacements) {
+            updatePreview();
+            return;
+        }
+
+        let cursorPos = editor.selectionStart;
+        let text = editor.value;
+
+        for (const [trigger, replacement] of Object.entries(rules.double_tap_replacements)) {
+
+            const len = trigger.length;
+
+            if (cursorPos >= len) {
+
+                const typed = text.slice(cursorPos - len, cursorPos);
+
+                if (typed === trigger) {
+
+                    const before = text.slice(0, cursorPos - len);
+                    const after = text.slice(cursorPos);
+
+                    editor.value = before + replacement + after;
+
+                    const newPos = before.length + replacement.length;
+
+                    editor.setSelectionRange(newPos, newPos);
+
+                    break;
+                }
+            }
+        }
+
+        updatePreview();
+    });
 
     function updatePreview() {
-        if (editor && preview) {
-            preview.textContent = editor.value;
-        }
+        preview.textContent = editor.value;
     }
+
+    updatePreview();
 });
