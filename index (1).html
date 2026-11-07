@@ -1,51 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ga">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richlo Font Engine Test</title>
-    <link rel="stylesheet" href="style.css">
+    <title>cbes.engine — Glanchló Input Engine</title>
     <style>
-        /* Temporary inline styles for testing your engine elements */
-        body {
-            font-family: 'Richlo', sans-serif;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+        @font-face {
+            font-family: 'Glanchlo';
+            src: url('richlo.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
+        @font-face {
+            font-family: 'Glanchlo';
+            src: url('richlo iodalach.woff2') format('woff2');
+            font-weight: normal;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Glanchlo';
+            src: url('richlo trom.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #faf9f6;
+            --text-color: #1a1a1a;
+            --accent-color: #2b5329;
+            --card-bg: #ffffff;
+            --border-color: #e0deda;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Glanchlo', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 0 0 10px 0;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
         textarea {
             width: 100%;
-            height: 100px;
+            height: 120px;
+            font-family: system-ui, sans-serif;
             font-size: 1.1rem;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            resize: vertical;
+            margin-bottom: 16px;
         }
+
+        textarea:focus {
+            outline: 2px solid var(--accent-color);
+        }
+
         .output-box {
-            border: 1px solid #ccc;
-            padding: 15px;
+            font-family: 'Glanchlo', serif;
+            font-size: 1.8rem;
+            background: #f4f3ef;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
             min-height: 80px;
-            font-size: 1.5rem;
-            background: #fafafa;
+            word-break: break-word;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <h1>cbes.engine</h1>
+        <p class="subtitle">Open-source CBÉS input engine with Glanchló font support.</p>
+    </header>
+
     <main>
-        <h1>Richlo Typography Test</h1>
-        <p class="regular">This is regular Richlo text.</p>
-        <p class="iodalach">This is Richlo Iodalach text.</p>
-        <p class="trom">This is Richlo Trom (heavy) text.</p>
+        <div class="card">
+            <label for="editor">Tástáil / Live Input Engine</label>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 0;">Type double letters (e.g. <code>bb</code>, <code>cc</code>, <code>ss</code>) to generate séimhiús instantly.</p>
+            
+            <textarea id="editor" placeholder="Clóscríobh anseo... (Type here...)"></textarea>
 
-        <!-- Engine Input & Output Elements -->
-        <h2>Séimhiú Engine Test</h2>
-        <label for="editor">Type here (e.g. bb, cc, ss):</label>
-        <textarea id="editor" placeholder="Type double letters..."></textarea>
-
-        <label>Live Output:</label>
-        <div id="output" class="output-box"></div>
+            <label>Aschur / Glanchló Output</label>
+            <div id="output" class="output-box"></div>
+        </div>
     </main>
 
-    <!-- Clean external script link -->
-    <script src="engine.js" defer></script>
+<footer>
+    <p>This site is open source. <a href="https://github.com" target="_blank">Improve this page on GitHub</a>.</p>
+</footer>
+
+<script src="engine.js" defer></script>
 </body>
 </html>
