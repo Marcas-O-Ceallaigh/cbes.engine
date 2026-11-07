@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Richlo';
+  src: url('richlo.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Richlo';
+  src: url('richlo iodalach.woff2') format('woff2');
+  /* Adjust weight/style descriptor depending on whether this is italic, bold, or a specific subfamily */
+  font-weight: normal; 
+  font-style: italic; 
+}
+
+@font-face {
+  font-family: 'Richlo';
+  src: url('richlo trom.woff2') format('woff2');
+  font-weight: bold; /* 'trom' typically translates to heavy/bold in Irish typography */
+  font-style: normal;
+}
