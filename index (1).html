@@ -14,4 +14,29 @@
         <p class="trom">This is Richlo Trom (heavy) text.</p>
     </main>
 </body>
+    <script>
+    // Your double-tap replacement map
+    const replacements = {
+        "bb": "ḃ", "cc": "ċ", "dd": "ḋ", "ff": "ḟ", "gg": "ġ",
+        "mm": "ṁ", "pp": "ṗ", "ss": "ṡ", "tt": "ṫ", "ii": "ı",
+        "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
+        "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
+        "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
+    };
+
+    // Point these to whatever your actual input and output HTML element IDs are!
+    const editor = document.getElementById('editor'); // Your typing field
+    const output = document.getElementById('output'); // Your display field
+
+    editor.addEventListener('input', (e) => {
+        let text = editor.value;
+
+        // Automatically replace double letters on the fly
+        for (const [key, val] of Object.entries(replacements)) {
+            text = text.replaceAll(key, val);
+        }
+
+        output.textContent = text;
+    });
+        </script>
 </html>
