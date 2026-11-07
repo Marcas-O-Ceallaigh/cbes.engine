@@ -45,29 +45,7 @@
         <div id="output" class="output-box"></div>
     </main>
 
-    <script>
-        // Your double-tap replacement map
-        const replacements = {
-            "bb": "ḃ", "cc": "ċ", "dd": "ḋ", "ff": "ḟ", "gg": "ġ",
-            "mm": "ṁ", "pp": "ṗ", "ss": "ṡ", "tt": "ṫ", "ii": "ı",
-            "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
-            "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
-            "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
-        };
-
-        const editor = document.getElementById('editor');
-        const output = document.getElementById('output');
-
-        editor.addEventListener('input', (e) => {
-            let text = editor.value;
-
-            // Automatically replace double letters on the fly
-            for (const [key, val] of Object.entries(replacements)) {
-                text = text.replaceAll(key, val);
-            }
-
-            output.textContent = text;
-        });
-   <script src="engine.js" defer></script> 
+    <!-- Clean external script link -->
+    <script src="engine.js" defer></script>
 </body>
 </html>
