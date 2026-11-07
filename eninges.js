@@ -1,23 +1,18 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
     const editor = document.getElementById('editor');
     const output = document.getElementById('output');
 
     if (!editor || !output) return;
 
-    let replacements = {};
+    // Direct rules map — no fetch() needed, immune to CORS/path bugs!
+    const replacements = {
+        "bb": "ḃ", "cc": "ċ", "dd": "ḋ", "ff": "ḟ", "gg": "ġ",
+        "mm": "ṁ", "pp": "ṗ", "ss": "ṡ", "tt": "ṫ", "ii": "ı",
+        "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
+        "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
+        "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
+    };
 
-    try {
-        // Fetch your rules.json automatically
-        const response = await fetch('rules.json');
-        const data = await response.json();
-        
-        // Handle both formats: direct object map or your double_tap_replacements wrapper
-        replacements = data.double_tap_replacements || data;
-    } catch (error) {
-        console.error("Could not load rules.json, falling back to empty map:", error);
-    }
-
-    // Listen for typing and apply replacements on the fly
     editor.addEventListener('input', () => {
         let text = editor.value;
 
