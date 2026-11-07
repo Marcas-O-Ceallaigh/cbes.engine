@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richlo Font Engine Test</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Temporary inline styles for testing your engine elements */
+        body {
+            font-family: 'Richlo', sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 1.1rem;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .output-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            min-height: 80px;
+            font-size: 1.5rem;
+            background: #fafafa;
+        }
+    </style>
 </head>
 <body>
     <main>
@@ -12,31 +35,39 @@
         <p class="regular">This is regular Richlo text.</p>
         <p class="iodalach">This is Richlo Iodalach text.</p>
         <p class="trom">This is Richlo Trom (heavy) text.</p>
+
+        <!-- Engine Input & Output Elements -->
+        <h2>Séimhiú Engine Test</h2>
+        <label for="editor">Type here (e.g. bb, cc, ss):</label>
+        <textarea id="editor" placeholder="Type double letters..."></textarea>
+
+        <label>Live Output:</label>
+        <div id="output" class="output-box"></div>
     </main>
-</body>
+
     <script>
-    // Your double-tap replacement map
-    const replacements = {
-        "bb": "ḃ", "cc": "ċ", "dd": "ḋ", "ff": "ḟ", "gg": "ġ",
-        "mm": "ṁ", "pp": "ṗ", "ss": "ṡ", "tt": "ṫ", "ii": "ı",
-        "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
-        "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
-        "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
-    };
+        // Your double-tap replacement map
+        const replacements = {
+            "bb": "ḃ", "cc": "ċ", "dd": "ḋ", "ff": "ḟ", "gg": "ġ",
+            "mm": "ṁ", "pp": "ṗ", "ss": "ṡ", "tt": "ṫ", "ii": "ı",
+            "aa": "ȧ", "ee": "ė", "oo": "ȯ", "uu": "u̇",
+            "BB": "Ḃ", "CC": "Ċ", "DD": "Ḋ", "FF": "Ḟ", "GG": "Ġ",
+            "MM": "Ṁ", "PP": "Ṗ", "SS": "Ṡ", "TT": "Ṫ"
+        };
 
-    // Point these to whatever your actual input and output HTML element IDs are!
-    const editor = document.getElementById('editor'); // Your typing field
-    const output = document.getElementById('output'); // Your display field
+        const editor = document.getElementById('editor');
+        const output = document.getElementById('output');
 
-    editor.addEventListener('input', (e) => {
-        let text = editor.value;
+        editor.addEventListener('input', (e) => {
+            let text = editor.value;
 
-        // Automatically replace double letters on the fly
-        for (const [key, val] of Object.entries(replacements)) {
-            text = text.replaceAll(key, val);
-        }
+            // Automatically replace double letters on the fly
+            for (const [key, val] of Object.entries(replacements)) {
+                text = text.replaceAll(key, val);
+            }
 
-        output.textContent = text;
-    });
-        </script>
+            output.textContent = text;
+        });
+    </script>
+</body>
 </html>
